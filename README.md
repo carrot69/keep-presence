@@ -1,6 +1,6 @@
 # Keep Presence
 
-This is a Python tool that allows you to move the mouse or press the shift keyboard key if it detects that you didn't move the mouse in a settled space of time.
+This program moves the mouse or press a keyboard key when it detects that you are away. If you are using your computer, it won't do anything. Useful to trick your machine to think you are still working with it. 
 
 ## Installation
 
