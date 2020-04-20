@@ -1,0 +1,28 @@
+name: keep-presence
+version: '1.0.1'
+summary: Keep Presence
+description: |
+  Moves the mouse or press a key when it detects you are away.
+  Useful to trick your computer to think you are still working with it.
+grade: stable
+confinement: strict
+base: core18
+
+parts:
+  copy-stuff:
+    plugin: dump
+    source: ./src
+  keep-presence:
+    plugin: python
+    python-version: python3
+    source: .
+  dlib:
+    plugin: python
+    python-packages:
+      - pynput
+
+apps:
+  keep-presence:
+    command: python3 $SNAP/keep-presence.py
+    plugs:
+      - x11

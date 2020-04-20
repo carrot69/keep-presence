@@ -8,14 +8,31 @@ Useful to trick your machine to think you are still working with it.
 
 [![Demo](https://j.gifs.com/MwA751.gif)](https://github.com/carrot69/keep-presence)
 
-## Installation
+## Install it with Snap
 
-- You need `python3` and `pip3` installed on your computer.
+```
+sudo snap install keep-presence
+```
+
+##### Run
+
+```
+keep-presence
+```
+
+If you don't have the `snap` command available, you might be able to find instructions for your distro [here](https://docs.snapcraft.io/core/install).
+
+## Classical installation
+
+- Clone the project
+- Install `python3` and `pip3`.
 - Execute `pip3 install pynput`
 
-## Run
+##### Run
 
-- `python3 keep-presence.py`
+```
+python3 keep-presence.py
+```
 
 ### Command arguments
 
