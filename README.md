@@ -1,7 +1,8 @@
 # Keep Presence
 
-This program moves the mouse or press the shift keyboard key when it detects that you are away.  
-It won't do anything if you are using your computer. Useful to trick your machine to think you are still working with it. 
+This program moves the mouse or press a key when it detects that you are away.  
+It won't do anything if you are using your computer.  
+Useful to trick your machine to think you are still working with it. 
 
 ## Demo
 
