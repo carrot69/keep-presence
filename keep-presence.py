@@ -32,15 +32,16 @@ def define_custom_seconds():
     is_keyboard_enabled = 'keyboard' == mode or is_both_enabled
     is_mouse_enabled = 'mouse' == mode or is_both_enabled or mode is None
 
+    print('--------')
     if is_keyboard_enabled:
         PRESS_SHIFT_KEY = True
-        print("Keyboard is enabled")
+        print(get_now_timestamp(), "Keyboard is enabled")
 
     if is_mouse_enabled:
         MOVE_MOUSE = True
-        print("Mouse is enabled")
+        print(get_now_timestamp(), "Mouse is enabled")
 
-    print('Running every', str(move_mouse_every_seconds), 'seconds')
+    print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
     print('--------')
 
 
@@ -60,7 +61,7 @@ def move_mouse():
 
     current_position = mouse.position
 
-    print(get_now_timestamp(), 'mouse moved to: ', current_position)
+    print(get_now_timestamp(), 'Moved mouse moved to: ', current_position)
 
     return current_position
 
@@ -77,6 +78,8 @@ def get_now_timestamp():
 
 
 def execute_keep_awake_action():
+    print(get_now_timestamp(), 'Idle detection')
+
     if MOVE_MOUSE:
         move_mouse()
 
@@ -89,12 +92,14 @@ lastSavePosition = (0, 0)
 
 while 1:
     currentPosition = mouse.position
+    is_user_away = currentPosition == lastSavePosition
 
-    print(get_now_timestamp(), currentPosition)
-
-    if currentPosition == lastSavePosition:
+    if is_user_away:
         execute_keep_awake_action()
         currentPosition = mouse.position
+
+    if not is_user_away:
+        print(get_now_timestamp(), 'User activity detected')
 
     lastSavePosition = currentPosition
 
