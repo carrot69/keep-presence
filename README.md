@@ -8,7 +8,7 @@ Useful to trick your machine to think you are still working with it.
 
 [![Demo](https://j.gifs.com/MwA751.gif)](https://github.com/carrot69/keep-presence)
 
-## Install it with Snap
+## Install with Snap
 
 ```
 sudo snap install keep-presence
