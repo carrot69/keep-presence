@@ -15,18 +15,22 @@ move_mouse_every_seconds = 300
 
 
 def define_custom_seconds():
-    global move_mouse_every_seconds, PRESS_SHIFT_KEY, MOVE_MOUSE
+    global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--seconds", "-s", help="define seconds to wait between actions")
-    parser.add_argument("--mode", "-m", help="available options: keyboard, mouse, both; default is mouse")
+    parser.add_argument("--seconds", "-s", help="Set seconds to wait between actions.")
+    parser.add_argument("--mode", "-m", help="Available options: keyboard, mouse, both; default is mouse.")
+    parser.add_argument("--pixels", "-p", help="Set how many pixels the mouse should move.")
 
     args = parser.parse_args()
     mode = args.mode
 
     if args.seconds:
         move_mouse_every_seconds = int(args.seconds)
+
+    if args.pixels:
+        PIXELS_TO_MOVE = int(args.pixels)
 
     is_both_enabled = 'both' == mode
     is_keyboard_enabled = 'keyboard' == mode or is_both_enabled
@@ -39,7 +43,7 @@ def define_custom_seconds():
 
     if is_mouse_enabled:
         MOVE_MOUSE = True
-        print(get_now_timestamp(), "Mouse is enabled")
+        print(get_now_timestamp(), "Mouse is enabled, moving", PIXELS_TO_MOVE, 'pixels')
 
     print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
     print('--------')
@@ -61,7 +65,7 @@ def move_mouse():
 
     current_position = mouse.position
 
-    print(get_now_timestamp(), 'Moved mouse moved to: ', current_position)
+    print(get_now_timestamp(), 'Moved mouse to: ', current_position)
 
     return current_position
 
