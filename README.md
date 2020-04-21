@@ -6,7 +6,7 @@ Useful to trick your machine to think you are still working with it.
 
 ## Demo
 
-[![Demo](https://j.gifs.com/MwA751.gif)](https://github.com/carrot69/keep-presence)
+[![Demo](demo/demo.gif)](https://github.com/carrot69/keep-presence)
 
 ## Install with Snap
 
