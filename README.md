@@ -34,8 +34,20 @@ If you don't have the `snap` command available, you might be able to find instru
 python3 keep-presence.py
 ```
 
-### Command arguments
+### Optional arguments
 
-- `python3 keep-presence.py --seconds 300`. Default is `300` seconds. This define in seconds the allowed idle time. After that time, if mouse wasn't moved, it will move the mouse or press the shift key on the keyboard.
-- `python3 keep-presence.py --mode mouse`. Default is `mouse`. Modes allowed are `mouse` | `keyboard` | `both`. After away is detected, what action is needed? Move the mouse 1 pixel, press the shift key or both. 
-- `python3 keep-presence.py --pixels`. Default is `1`. Define how many pixels the mouse should move if user is away. 
+```
+-h, --help                        show this help message and exit
+            
+-s SECONDS, --seconds SECONDS     Define in seconds how long to wait after a user is
+                                  considered idle.
+            
+-p PIXELS, --pixels PIXELS        Set how many pixels the mouse should move.
+            
+-m MODE, --mode MODE              Available options: keyboard, mouse, both; default is
+                                  mouse. This is the action that will be executed when
+                                  the user is idle: If keyboard is selected, the program
+                                  will press the shift key. If mouse is selected, the
+                                  program will move the mouse. If both is selected, the
+                                  program will do both actions.
+```
