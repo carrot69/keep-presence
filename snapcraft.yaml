@@ -1,9 +1,11 @@
 name: keep-presence
-version: '1.0.1'
+version: '1.0.3'
 summary: Keep Presence
 description: |
-  Moves the mouse or press a key when it detects you are away.
-  Useful to trick your computer to think you are still working with it.
+  This program moves the mouse or press a key when it detects that you are away.
+  It won't do anything if you are using your computer.
+  Useful to trick your machine to think you are still working with it.
+icon: snap/gui/logo.png
 grade: stable
 confinement: strict
 base: core18
