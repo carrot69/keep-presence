@@ -24,11 +24,11 @@ def define_custom_seconds():
 
     parser.add_argument(
         "-s", "--seconds", type=int,
-        help="Define in seconds how long to wait after a user is considered idle. ")
+        help="Define in seconds how long to wait after a user is considered idle. Default 300.")
 
     parser.add_argument(
         "-p", "--pixels", type=int,
-        help="Set how many pixels the mouse should move.")
+        help="Set how many pixels the mouse should move. Default 1.")
 
     parser.add_argument(
         "-m", "--mode",

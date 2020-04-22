@@ -40,9 +40,9 @@ python3 keep-presence.py
 -h, --help                        show this help message and exit
             
 -s SECONDS, --seconds SECONDS     Define in seconds how long to wait after a user is
-                                  considered idle.
+                                  considered idle. Default 300.
             
--p PIXELS, --pixels PIXELS        Set how many pixels the mouse should move.
+-p PIXELS, --pixels PIXELS        Set how many pixels the mouse should move. Default 1.
             
 -m MODE, --mode MODE              Available options: keyboard, mouse, both; default is
                                   mouse. This is the action that will be executed when
