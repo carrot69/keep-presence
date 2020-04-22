@@ -17,11 +17,26 @@ move_mouse_every_seconds = 300
 def define_custom_seconds():
     global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="This program moves the mouse or press a key when it detects that you are away. "
+                    "It won't do anything if you are using your computer. "
+                    "Useful to trick your machine to think you are still working with it.")
 
-    parser.add_argument("--seconds", "-s", help="Set seconds to wait between actions.")
-    parser.add_argument("--mode", "-m", help="Available options: keyboard, mouse, both; default is mouse.")
-    parser.add_argument("--pixels", "-p", help="Set how many pixels the mouse should move.")
+    parser.add_argument(
+        "-s", "--seconds", type=int,
+        help="Define in seconds how long to wait after a user is considered idle. ")
+
+    parser.add_argument(
+        "-p", "--pixels", type=int,
+        help="Set how many pixels the mouse should move.")
+
+    parser.add_argument(
+        "-m", "--mode",
+        help="Available options: keyboard, mouse, both; default is mouse. "
+             "This is the action that will be executed when the user is idle: "
+             "If keyboard is selected, the program will press the shift key. "
+             "If mouse is selected, the program will move the mouse. "
+             "If both is selected, the program will do both actions. ")
 
     args = parser.parse_args()
     mode = args.mode
