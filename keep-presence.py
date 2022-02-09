@@ -67,7 +67,8 @@ def define_custom_seconds():
 
     if is_mouse_enabled:
         MOVE_MOUSE = True
-        print(get_now_timestamp(), "Mouse is enabled, moving", PIXELS_TO_MOVE, 'pixels', '(circularly)' if MOUSE_DIRECTION_DELTA == 1 else '')
+        print(get_now_timestamp(), "Mouse is enabled, moving", PIXELS_TO_MOVE, 'pixels',
+              '(circularly)' if MOUSE_DIRECTION_DELTA == 1 else '')
 
     print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
     print('--------')
@@ -75,7 +76,7 @@ def define_custom_seconds():
 
 def move_mouse_when_unable_to_move(expected_mouse_position):
     if expected_mouse_position != mouse.position:
-        mouse.position = (0, 0)
+        mouse.position = (PIXELS_TO_MOVE, PIXELS_TO_MOVE)
 
 
 def move_mouse():
