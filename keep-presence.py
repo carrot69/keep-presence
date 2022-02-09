@@ -10,12 +10,14 @@ keyboard = KeyboardController()
 MOVE_MOUSE = False
 PRESS_SHIFT_KEY = False
 PIXELS_TO_MOVE = 1
+MOUSE_DIRECTION_DELTA = 0
 
 move_mouse_every_seconds = 300
+mouse_direction = 0
 
 
 def define_custom_seconds():
-    global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE
+    global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE, MOUSE_DIRECTION_DELTA
 
     parser = argparse.ArgumentParser(
         description="This program moves the mouse or press a key when it detects that you are away. "
@@ -29,6 +31,10 @@ def define_custom_seconds():
     parser.add_argument(
         "-p", "--pixels", type=int,
         help="Set how many pixels the mouse should move. Default 1.")
+
+    parser.add_argument(
+        "-c", "--circular", action='store_true',
+        help="Move mouse in a circle. Default move diagonally.")
 
     parser.add_argument(
         "-m", "--mode",
@@ -47,6 +53,9 @@ def define_custom_seconds():
     if args.pixels:
         PIXELS_TO_MOVE = int(args.pixels)
 
+    if args.circular:
+        MOUSE_DIRECTION_DELTA = 1
+
     is_both_enabled = 'both' == mode
     is_keyboard_enabled = 'keyboard' == mode or is_both_enabled
     is_mouse_enabled = 'mouse' == mode or is_both_enabled or mode is None
@@ -58,7 +67,8 @@ def define_custom_seconds():
 
     if is_mouse_enabled:
         MOVE_MOUSE = True
-        print(get_now_timestamp(), "Mouse is enabled, moving", PIXELS_TO_MOVE, 'pixels')
+        print(get_now_timestamp(), "Mouse is enabled, moving", PIXELS_TO_MOVE, 'pixels',
+              '(circularly)' if MOUSE_DIRECTION_DELTA == 1 else '')
 
     print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
     print('--------')
@@ -66,12 +76,17 @@ def define_custom_seconds():
 
 def move_mouse_when_unable_to_move(expected_mouse_position):
     if expected_mouse_position != mouse.position:
-        mouse.position = (0, 0)
+        mouse.position = (PIXELS_TO_MOVE, PIXELS_TO_MOVE)
 
 
 def move_mouse():
-    new_x = currentPosition[0] + PIXELS_TO_MOVE
-    new_y = currentPosition[1] + PIXELS_TO_MOVE
+    global mouse_direction
+    delta_x = PIXELS_TO_MOVE if mouse_direction == 0 or mouse_direction == 3 else -PIXELS_TO_MOVE
+    delta_y = PIXELS_TO_MOVE if mouse_direction == 0 or mouse_direction == 1 else -PIXELS_TO_MOVE
+
+    new_x = currentPosition[0] + delta_x
+    new_y = currentPosition[1] + delta_y
+    mouse_direction = (mouse_direction + MOUSE_DIRECTION_DELTA) % 4
 
     new_position = (new_x, new_y)
     mouse.position = new_position

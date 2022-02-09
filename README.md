@@ -14,6 +14,13 @@ Useful to trick your machine to think you are still working with it.
 sudo snap install keep-presence
 ```
 
+<a href="https://snapcraft.io/keep-presence" target="_blank">
+  <img alt="Get it from the Snap Store"
+       src="https://raw.githubusercontent.com/snapcore/snap-store-badges/master/EN/%5BEN%5D-snap-store-black.svg"
+       align="center"
+       height="50">
+</a>
+
 ##### Run
 
 ```
@@ -41,13 +48,14 @@ python3 keep-presence.py
             
 -s SECONDS, --seconds SECONDS     Define in seconds how long to wait after a user is
                                   considered idle. Default 300.
-            
+
 -p PIXELS, --pixels PIXELS        Set how many pixels the mouse should move. Default 1.
-            
--m MODE, --mode MODE              Available options: keyboard, mouse, both; default is
-                                  mouse. This is the action that will be executed when
-                                  the user is idle: If keyboard is selected, the program
-                                  will press the shift key. If mouse is selected, the
-                                  program will move the mouse. If both is selected, the
-                                  program will do both actions.
+
+-c, --circular                    Move mouse in a circle. Default move diagonally.
+
+-m MODE, --mode MODE              Available options: keyboard, mouse, both; default is mouse. 
+                                  This is the action that will be executed when the user is idle. 
+                                  If keyboard is selected, the program will press the shift key. 
+                                  If mouse is selected, the program will move the mouse. 
+                                  If both is selected, the program will do both actions.
 ```
