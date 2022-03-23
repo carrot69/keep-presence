@@ -31,17 +31,15 @@ If you don't have the `snap` command available, you might be able to find instru
 
 ## Classical installation
 
-- Clone the project
-- Install `python3` and `pip3`.
-- Execute `pip3 install pynput`
+```bash
+git clone https://github.com/carrot69/keep-presence.git
+cd keep-presence
+pip3 install pynput
 
-##### Run
-
-```
-python3 keep-presence.py
+python3 src/keep-presence.py
 ```
 
-### Optional arguments
+## Optional arguments
 
 ```
 -h, --help                        show this help message and exit
