@@ -31,11 +31,10 @@ If you don't have the `snap` command available, you might be able to find instru
 
 ## Classical installation
 
-```bash
+```
 git clone https://github.com/carrot69/keep-presence.git
 cd keep-presence
 pip3 install pynput
-
 python3 src/keep-presence.py
 ```
 
