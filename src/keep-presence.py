@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 from pynput.mouse import Controller as MouseController
 from pynput.keyboard import Key, Controller as KeyboardController
+import random
 
 mouse = MouseController()
 keyboard = KeyboardController()
@@ -13,13 +14,16 @@ MOVE_MOUSE = False
 PRESS_SHIFT_KEY = False
 PIXELS_TO_MOVE = 1
 MOUSE_DIRECTION_DELTA = 0
+RANDOM = False
+RAND_START = 0
+RAND_STOP = 0
 
 move_mouse_every_seconds = 300
 mouse_direction = 0
 
 
 def define_custom_seconds():
-    global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE, MOUSE_DIRECTION_DELTA
+    global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE, MOUSE_DIRECTION_DELTA, RANDOM, RAND_START, RAND_STOP
 
     parser = argparse.ArgumentParser(
         description="This program moves the mouse or press a key when it detects that you are away. "
@@ -46,8 +50,18 @@ def define_custom_seconds():
              "If mouse is selected, the program will move the mouse. "
              "If both is selected, the program will do both actions. ")
 
+    parser.add_argument(
+        "-r", "--random", nargs=2,
+        help="Usage: two numbers (ex. -r 3 10). "
+             "Execute actions based on a random interval between start and stop seconds. "
+             "Note: Overwrites the seconds argument.")
+
     args = parser.parse_args()
     mode = args.mode
+    random = args.random
+
+    RAND_START = int(random[0])
+    RAND_STOP = int(random[1])
 
     if args.seconds:
         move_mouse_every_seconds = int(args.seconds)
@@ -57,6 +71,7 @@ def define_custom_seconds():
 
     if args.circular:
         MOUSE_DIRECTION_DELTA = 1
+
 
     is_both_enabled = 'both' == mode
     is_keyboard_enabled = 'keyboard' == mode or is_both_enabled
@@ -71,6 +86,9 @@ def define_custom_seconds():
         MOVE_MOUSE = True
         print(get_now_timestamp(), "Mouse is enabled, moving", PIXELS_TO_MOVE, 'pixels',
               '(circularly)' if MOUSE_DIRECTION_DELTA == 1 else '')
+    if random:
+        RANDOM = True
+        print(get_now_timestamp(), "Random timing is enabled.")
 
     print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
     print('--------')
@@ -139,5 +157,11 @@ while 1:
 
     lastSavePosition = currentPosition
 
+    if RANDOM:
+        rand_delay = random.randint(RAND_START, RAND_STOP)
+        time.sleep(rand_delay)
+        print(get_now_timestamp(), f"Delay: {str(rand_delay)}")
+    else:
+        time.sleep(move_mouse_every_seconds)
+
     print('--------')
-    time.sleep(move_mouse_every_seconds)
