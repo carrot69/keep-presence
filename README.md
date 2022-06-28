@@ -55,4 +55,10 @@ python3 src/keep-presence.py
                                   If keyboard is selected, the program will press the shift key. 
                                   If mouse is selected, the program will move the mouse. 
                                   If both is selected, the program will do both actions.
+
+-r RANDOM RANDOM, --random RANDOM RANDOM
+                                  Usage: two numbers (ex. -r 3 10). Execute actions based on a 
+                                  random interval between start and stop seconds. 
+                                  Note: Overwrites the seconds argument.
+
 ```
