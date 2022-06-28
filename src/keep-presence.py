@@ -176,3 +176,4 @@ try:
 
 except KeyboardInterrupt:
     print("\nBye bye ;-)")
+    exit()
