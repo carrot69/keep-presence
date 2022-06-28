@@ -52,7 +52,7 @@ def define_custom_seconds():
              "If both is selected, the program will do both actions. ")
 
     parser.add_argument(
-        "-r", "--random", nargs=2,
+        "-r", "--random", type=int, nargs=2,
         help="Usage: two numbers (ex. -r 3 10). "
              "Execute actions based on a random interval between start and stop seconds. "
              "Note: Overwrites the seconds argument.")
