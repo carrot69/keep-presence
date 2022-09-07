@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setup(
   name='keep-presence',
-  version='1.0.5',
+  version='1.0.6',
   install_requires=install_requires,
   scripts=[
     'keep-presence.py',
