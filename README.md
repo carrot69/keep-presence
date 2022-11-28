@@ -29,7 +29,7 @@ keep-presence
 
 If you don't have the `snap` command available, you might be able to find instructions for your distro [here](https://docs.snapcraft.io/core/install).
 
-## Classical installation
+## Manual installation
 
 ```
 git clone https://github.com/carrot69/keep-presence.git
