@@ -1,8 +1,15 @@
 # Keep Presence
 
-This program moves the mouse or press a key when it detects that you are away.  
-It won't do anything if you are using your computer.  
-Useful to trick your machine to think you are still working with it. 
+This program **moves the mouse** or presses a key when it detects that you are **away** from your computer.
+
+It does nothing if you are using your computer, making it useful for **tricking your machine into thinking you are still working**.
+
+<a href="https://snapcraft.io/keep-presence" target="_blank">
+  <img alt="Get it from the Snap Store"
+       src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
+       align="center"
+       height="50">
+</a>
 
 ## Demo
 
@@ -14,27 +21,23 @@ Useful to trick your machine to think you are still working with it.
 sudo snap install keep-presence
 ```
 
-<a href="https://snapcraft.io/keep-presence" target="_blank">
-  <img alt="Get it from the Snap Store"
-       src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
-       align="center"
-       height="50">
-</a>
+If you don't have the `snap` command available, you might be able to find instructions for installing it on your distribution [here](https://docs.snapcraft.io/core/install).
 
-##### Run
+### Run
 
 ```
 keep-presence
 ```
 
-If you don't have the `snap` command available, you might be able to find instructions for your distro [here](https://docs.snapcraft.io/core/install).
-
 ## Manual installation
 
 ```
 git clone https://github.com/carrot69/keep-presence.git
+
 cd keep-presence
+
 pip3 install pynput
+
 python3 src/keep-presence.py
 ```
 
