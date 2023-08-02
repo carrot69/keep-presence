@@ -2,7 +2,7 @@
 
 This program **moves the mouse** or presses a key when it detects that you are **away** from your computer.
 
-It does nothing if you are using your computer, making it useful for **tricking your machine into thinking you are still working**.
+It does nothing if you are using your computer, making it useful for **tricking your machine into thinking you are still using it**.
 
 <a href="https://snapcraft.io/keep-presence" target="_blank">
   <img alt="Get it from the Snap Store"
