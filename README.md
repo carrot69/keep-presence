@@ -18,8 +18,6 @@ https://pypi.org/project/keep-presence/
 
 ### Run
 
-Once installed, you can run the program doing:
-
 ```
 keep-presence
 
