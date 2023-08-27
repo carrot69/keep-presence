@@ -8,7 +8,7 @@ It does nothing if you are using your computer, making it useful for **tricking 
 
 [![Demo](demo/demo.gif)](https://github.com/carrot69/keep-presence)
 
-## Install from Pypi
+# Install from Pypi
 
 ```
 python3 -m pip install keep_presence
@@ -28,7 +28,7 @@ keep-presence
 python3 -m keep_presence
 ```
 
-## Install with Snap
+# Install with Snap
 
 ```
 sudo snap install keep-presence
@@ -47,7 +47,7 @@ sudo snap install keep-presence
 keep-presence
 ```
 
-## Manual installation
+# Manual installation
 
 ```
 git clone https://github.com/carrot69/keep-presence.git
