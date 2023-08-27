@@ -4,16 +4,29 @@ This program **moves the mouse** or presses a key when it detects that you are *
 
 It does nothing if you are using your computer, making it useful for **tricking your machine into thinking you are still using it**.
 
-<a href="https://snapcraft.io/keep-presence" target="_blank">
-  <img alt="Get it from the Snap Store"
-       src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
-       align="center"
-       height="50">
-</a>
-
 ## Demo
 
 [![Demo](demo/demo.gif)](https://github.com/carrot69/keep-presence)
+
+## Install from Pypi
+
+```
+python3 -m pip install keep_presence
+```
+https://pypi.org/project/keep-presence/
+
+
+### Run
+
+Once installed, you can run the program doing:
+
+```
+keep-presence
+
+# or
+
+python3 -m keep_presence
+```
 
 ## Install with Snap
 
@@ -21,7 +34,12 @@ It does nothing if you are using your computer, making it useful for **tricking 
 sudo snap install keep-presence
 ```
 
-If you don't have the `snap` command available, you might be able to find instructions for installing it on your distribution [here](https://docs.snapcraft.io/core/install).
+<a href="https://snapcraft.io/keep-presence" target="_blank">
+  <img alt="Get it from the Snap Store"
+       src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
+       align="center"
+       height="50">
+</a>
 
 ### Run
 
@@ -36,7 +54,7 @@ git clone https://github.com/carrot69/keep-presence.git
 
 cd keep-presence
 
-pip3 install pynput
+python3 -m pip install pynput
 
 python3 src/keep-presence.py
 ```
