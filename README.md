@@ -6,7 +6,7 @@ It does nothing if you are using your computer, making it useful for **tricking 
 
 ## Demo
 
-[![Demo](demo/demo.gif)](https://github.com/carrot69/keep-presence)
+[![Demo](https://raw.githubusercontent.com/carrot69/keep-presence/master/demo/demo.gif)](https://github.com/carrot69/keep-presence)
 
 # Install from Pypi
 
@@ -69,7 +69,8 @@ python3 src/keep-presence.py
 
 -c, --circular                    Move mouse in a circle. Default move diagonally.
 
--m MODE, --mode MODE              Available options: keyboard, mouse, both; default is mouse. 
+-m MODE, --mode MODE              Available options: keyboard, mouse, both (mouse & keyboard) and scroll. 
+                                  Default is mouse. 
                                   This is the action that will be executed when the user is idle. 
                                   If keyboard is selected, the program will press the shift key. 
                                   If mouse is selected, the program will move the mouse. 
@@ -86,4 +87,4 @@ python3 src/keep-presence.py
 
 If you've found Keep Presence to be helpful, you can buy me a coffee, thanks!
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z5OORJB)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/keep_presence)

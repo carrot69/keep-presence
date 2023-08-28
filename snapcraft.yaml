@@ -1,5 +1,5 @@
 name: keep-presence
-version: '1.0.6'
+version: '1.0.7'
 summary: Keep Presence
 description: |
   This program moves the mouse or press a key when it detects that you are away.

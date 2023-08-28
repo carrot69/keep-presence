@@ -11,6 +11,7 @@ mouse = MouseController()
 keyboard = KeyboardController()
 
 MOVE_MOUSE = False
+SCROLL_ACTION = False
 PRESS_SHIFT_KEY = False
 RANDOM_MODE = False
 PIXELS_TO_MOVE = 1
@@ -23,7 +24,7 @@ mouse_direction = 0
 
 
 def define_custom_seconds():
-    global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE, \
+    global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE, SCROLL_ACTION, \
         MOUSE_DIRECTION_DELTA, RANDOM_MODE, RAND_INTERVAL_START, RAND_INTERVAL_STOP
 
     parser = argparse.ArgumentParser(
@@ -45,7 +46,7 @@ def define_custom_seconds():
 
     parser.add_argument(
         "-m", "--mode",
-        help="Available options: keyboard, mouse, both; default is mouse. "
+        help="Available options: keyboard, mouse, both (mouse & keyboard) and scroll; default is mouse. "
              "This is the action that will be executed when the user is idle: "
              "If keyboard is selected, the program will press the shift key. "
              "If mouse is selected, the program will move the mouse. "
@@ -82,16 +83,22 @@ def define_custom_seconds():
     is_both_enabled = 'both' == mode
     is_keyboard_enabled = 'keyboard' == mode or is_both_enabled
     is_mouse_enabled = 'mouse' == mode or is_both_enabled or mode is None
+    is_scroll_enabled = 'scroll' == mode
 
     print('--------')
     if is_keyboard_enabled:
         PRESS_SHIFT_KEY = True
         print(get_now_timestamp(), "Keyboard is enabled")
 
+    if is_scroll_enabled:
+        SCROLL_ACTION = True
+        print(get_now_timestamp(), "Mouse wheel scroll is enabled")
+
     if is_mouse_enabled:
         MOVE_MOUSE = True
         print(get_now_timestamp(), "Mouse is enabled, moving", PIXELS_TO_MOVE, 'pixels',
               '(circularly)' if MOUSE_DIRECTION_DELTA == 1 else '')
+
     if random_seconds_interval:
         RANDOM_MODE = True
         print(get_now_timestamp(), "Random timing is enabled.")
@@ -127,6 +134,11 @@ def move_mouse():
     return current_position
 
 
+def mouse_wheel_scroll():
+    mouse.scroll(0, -2)
+    print(get_now_timestamp(), 'Mouse wheel scrolled')
+
+
 def press_shift_key():
     keyboard.press(Key.shift)
     keyboard.release(Key.shift)
@@ -143,6 +155,9 @@ def execute_keep_awake_action():
 
     if MOVE_MOUSE:
         move_mouse()
+
+    if SCROLL_ACTION:
+        mouse_wheel_scroll()
 
     if PRESS_SHIFT_KEY:
         press_shift_key()
