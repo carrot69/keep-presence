@@ -81,3 +81,11 @@ python3 src/keep-presence.py
                                   Note: Overwrites the seconds argument.
 
 ```
+
+# Donations
+
+If you've found Keep Presence to be helpful, you can buy me a coffee, thanks!
+
+https://www.buymeacoffee.com/keeppresence
+
+
