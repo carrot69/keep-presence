@@ -82,10 +82,15 @@ python3 src/keep-presence.py
 
 ```
 
-# Donations
+# Donations:
 
 If you've found Keep Presence to be helpful, you can buy me a coffee, thanks!
 
-https://www.buymeacoffee.com/keeppresence
+<a href="https://ko-fi.com/Z8Z5OORJB" target="_blank">
+  <img alt="Buy Me a Coffee at ko-fi.com"
+       src="https://storage.ko-fi.com/cdn/kofi2.png?v=3"
+       align="center"
+       height="50">
+</a>
 
 
