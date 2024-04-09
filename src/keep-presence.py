@@ -119,7 +119,7 @@ def move_mouse():
     delta_x = PIXELS_TO_MOVE if mouse_direction == 0 or mouse_direction == 3 else -PIXELS_TO_MOVE
     delta_y = PIXELS_TO_MOVE if mouse_direction == 0 or mouse_direction == 1 else -PIXELS_TO_MOVE
 
-    current_position = mouse.position
+    currentPosition = mouse.position
     
     new_x = currentPosition[0] + delta_x
     new_y = currentPosition[1] + delta_y
