@@ -21,6 +21,7 @@ MOUSE_DIRECTION_DELTA = 0
 RAND_INTERVAL_START = 0
 RAND_INTERVAL_STOP = 0
 TIMEOUT = 0
+TIMEOUT_MESSAGE = ""
 
 move_mouse_every_seconds = 300
 mouse_direction = 0
@@ -29,7 +30,7 @@ lastSavePosition = (0, 0)
 
 def define_custom_seconds():
     global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE, SCROLL_ACTION, \
-        MOUSE_DIRECTION_DELTA, RANDOM_MODE, RAND_INTERVAL_START, RAND_INTERVAL_STOP, TIMEOUT
+        MOUSE_DIRECTION_DELTA, RANDOM_MODE, RAND_INTERVAL_START, RAND_INTERVAL_STOP, TIMEOUT, TIMEOUT_MESSAGE
 
     parser = argparse.ArgumentParser(
         description="This program moves the mouse or press a key when it detects that you are away. "
@@ -74,10 +75,13 @@ def define_custom_seconds():
 
     if tout:
         if tout.lower().endswith("s"):
+            TIMEOUT_MESSAGE = tout[:-1] + " seconds"
             TIMEOUT = int(tout[:-1])
         elif tout.lower().endswith("m"):
+            TIMEOUT_MESSAGE = tout[:-1] + " minutes"
             TIMEOUT = int(tout[:-1]) * 60
         elif tout.lower().endswith("h"):
+            TIMEOUT_MESSAGE = tout[:-1] + " hours"
             TIMEOUT = int(tout[:-1]) * 60 * 60
         else:
             print("Error: Invlaid time specified. Please use (s)econds, (m)inutes or (h)ours in your timeout.")
@@ -125,6 +129,9 @@ def define_custom_seconds():
         print(get_now_timestamp(), "Random timing is enabled.")
     else:
         print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
+
+    if TIMEOUT:
+        print(get_now_timestamp(), "Timeout is set for " + TIMEOUT_MESSAGE + ". Program will close after this time interval.")
 
     print('--------')
 
@@ -235,6 +242,7 @@ t.start()
 try:
     if TIMEOUT:
         sleep(TIMEOUT)
+        print(get_now_timestamp(), "Timeout for " + TIMEOUT_MESSAGE + " has elapsed, program is closing.")
     else:
         while True:
             pass
