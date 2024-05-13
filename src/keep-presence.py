@@ -6,6 +6,8 @@ from datetime import datetime
 from pynput.mouse import Controller as MouseController
 from pynput.keyboard import Key, Controller as KeyboardController
 import random
+from threading import Thread
+from time import sleep
 
 mouse = MouseController()
 keyboard = KeyboardController()
@@ -18,14 +20,16 @@ PIXELS_TO_MOVE = 1
 MOUSE_DIRECTION_DELTA = 0
 RAND_INTERVAL_START = 0
 RAND_INTERVAL_STOP = 0
+TIMEOUT = 0
 
 move_mouse_every_seconds = 300
 mouse_direction = 0
-
+currentPosition = []
+lastSavePosition = (0, 0)
 
 def define_custom_seconds():
     global move_mouse_every_seconds, PIXELS_TO_MOVE, PRESS_SHIFT_KEY, MOVE_MOUSE, SCROLL_ACTION, \
-        MOUSE_DIRECTION_DELTA, RANDOM_MODE, RAND_INTERVAL_START, RAND_INTERVAL_STOP
+        MOUSE_DIRECTION_DELTA, RANDOM_MODE, RAND_INTERVAL_START, RAND_INTERVAL_STOP, TIMEOUT
 
     parser = argparse.ArgumentParser(
         description="This program moves the mouse or press a key when it detects that you are away. "
@@ -58,9 +62,26 @@ def define_custom_seconds():
              "Execute actions based on a random interval between start and stop seconds. "
              "Note: Overwrites the seconds argument.")
 
+    parser.add_argument(
+        "-t", "--timeout",
+        help="Define a time limit to run in  (s)econds, (m)inutes or (h)ours. "
+             "Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours.")
+
     args = parser.parse_args()
     mode = args.mode
     random_seconds_interval = args.random
+    tout = args.timeout
+
+    if tout:
+        if tout.lower().endswith("s"):
+            TIMEOUT = int(tout[:-1])
+        elif tout.lower().endswith("m"):
+            TIMEOUT = int(tout[:-1]) * 60
+        elif tout.lower().endswith("h"):
+            TIMEOUT = int(tout[:-1]) * 60 * 60
+        else:
+            print("Error: Invlaid time specified. Please use (s)econds, (m)inutes or (h)ours in your timeout.")
+            exit()
 
     if args.seconds:
         move_mouse_every_seconds = int(args.seconds)
@@ -114,7 +135,7 @@ def move_mouse_when_unable_to_move(expected_mouse_position):
 
 
 def move_mouse():
-    global mouse_direction
+    global mouse_direction, currentPosition
     delta_x = PIXELS_TO_MOVE if mouse_direction == 0 or mouse_direction == 3 else -PIXELS_TO_MOVE
     delta_y = PIXELS_TO_MOVE if mouse_direction == 0 or mouse_direction == 1 else -PIXELS_TO_MOVE
 
@@ -122,10 +143,20 @@ def move_mouse():
     new_y = currentPosition[1] + delta_y
     mouse_direction = (mouse_direction + MOUSE_DIRECTION_DELTA) % 4
 
+    old_position = mouse.position
     new_position = (new_x, new_y)
     mouse.position = new_position
 
     move_mouse_when_unable_to_move(new_position)
+
+    current_position = mouse.position
+
+    print(get_now_timestamp(), 'Moved mouse to: ', current_position)
+
+    time.sleep(0.2)
+    mouse.position = old_position
+
+    move_mouse_when_unable_to_move(old_position)
 
     current_position = mouse.position
 
@@ -164,30 +195,49 @@ def execute_keep_awake_action():
 
 
 define_custom_seconds()
-lastSavePosition = (0, 0)
+
+
+def mainfunc():
+    global lastSavePosition, currentPosition
+
+    try:
+        while 1:
+            currentPosition = mouse.position
+            is_user_away = currentPosition == lastSavePosition
+
+            if is_user_away:
+                execute_keep_awake_action()
+                currentPosition = mouse.position
+
+            if not is_user_away:
+                print(get_now_timestamp(), 'User activity detected')
+
+            lastSavePosition = currentPosition
+
+            if RANDOM_MODE:
+                rand_delay = random.randint(RAND_INTERVAL_START, RAND_INTERVAL_STOP)
+                print(get_now_timestamp(), f"Delay: {str(rand_delay)}")
+                time.sleep(rand_delay)
+            else:
+                time.sleep(move_mouse_every_seconds)
+
+            print('--------')
+
+    except KeyboardInterrupt:
+        print("\nBye bye ;-)")
+        exit()
+
+
+
+t = Thread(target=mainfunc, daemon=True)
+t.start()
 
 try:
-    while 1:
-        currentPosition = mouse.position
-        is_user_away = currentPosition == lastSavePosition
-
-        if is_user_away:
-            execute_keep_awake_action()
-            currentPosition = mouse.position
-
-        if not is_user_away:
-            print(get_now_timestamp(), 'User activity detected')
-
-        lastSavePosition = currentPosition
-
-        if RANDOM_MODE:
-            rand_delay = random.randint(RAND_INTERVAL_START, RAND_INTERVAL_STOP)
-            print(get_now_timestamp(), f"Delay: {str(rand_delay)}")
-            time.sleep(rand_delay)
-        else:
-            time.sleep(move_mouse_every_seconds)
-
-        print('--------')
+    if TIMEOUT:
+        sleep(TIMEOUT)
+    else:
+        while True:
+            pass
 
 except KeyboardInterrupt:
     print("\nBye bye ;-)")
