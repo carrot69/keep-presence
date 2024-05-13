@@ -50,5 +50,6 @@ python3 src/keep-presence.py
                                   Note: Overwrites the seconds argument.
 
 -t TIMEOUT, --timeout TIMEOUT
-                                  Define a time limit to run in (s)econds, (m)inutes or (h)ours. Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours.
+                                  Define a time limit to run in (s)econds, (m)inutes or (h)ours.
+                                  Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours.
 ```
