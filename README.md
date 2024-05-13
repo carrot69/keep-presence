@@ -8,51 +8,21 @@ It does nothing if you are using your computer, making it useful for **tricking 
 
 [![Demo](https://raw.githubusercontent.com/carrot69/keep-presence/master/demo/demo.gif)](https://github.com/carrot69/keep-presence)
 
-# Install from Pypi
 
-```
-python3 -m pip install keep_presence
-```
-https://pypi.org/project/keep-presence/
-
-
-### Run
-
-```
-keep-presence
-
-# or
-
-python3 -m keep_presence
-```
-
-# Install with Snap
-
-```
-sudo snap install keep-presence
-```
-
-<a href="https://snapcraft.io/keep-presence" target="_blank">
-  <img alt="Get it from the Snap Store"
-       src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
-       align="center"
-       height="50">
-</a>
-
-### Run
-
-```
-keep-presence
 ```
 
 # Manual installation
 
 ```
-git clone https://github.com/carrot69/keep-presence.git
+git clone https://github.com/dynbabaul/keep-presence.git
 
 cd keep-presence
 
 python3 -m pip install pynput
+
+OR
+
+apt install python3-pynput (for debian Linux this will also install the needed dependency)
 
 python3 src/keep-presence.py
 ```
@@ -80,6 +50,9 @@ python3 src/keep-presence.py
                                   Usage: two numbers (ex. -r 3 10). Execute actions based on a 
                                   random interval between start and stop seconds. 
                                   Note: Overwrites the seconds argument.
+
+-t TIMEOUT, --timeout TIMEOUT
+                                  Define a time limit to run in (s)econds, (m)inutes or (h)ours. Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours.
 
 ```
 
