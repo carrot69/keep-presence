@@ -54,10 +54,3 @@ python3 src/keep-presence.py
 -t TIMEOUT, --timeout TIMEOUT
                                   Define a time limit to run in (s)econds, (m)inutes or (h)ours. Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours.
 
-```
-
-# Donations:
-
-If you've found Keep Presence to be helpful, you can buy me a coffee, thanks!
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/keep_presence)
