@@ -9,8 +9,6 @@ It does nothing if you are using your computer, making it useful for **tricking 
 [![Demo](https://raw.githubusercontent.com/carrot69/keep-presence/master/demo/demo.gif)](https://github.com/carrot69/keep-presence)
 
 
-```
-
 # Manual installation
 
 ```
@@ -53,4 +51,4 @@ python3 src/keep-presence.py
 
 -t TIMEOUT, --timeout TIMEOUT
                                   Define a time limit to run in (s)econds, (m)inutes or (h)ours. Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours.
-
+```
