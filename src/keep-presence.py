@@ -66,7 +66,8 @@ def define_custom_seconds():
     parser.add_argument(
         "-t", "--timeout",
         help="Define a time limit to run in  (s)econds, (m)inutes or (h)ours. "
-             "Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours.")
+             "Example: 10s for 10 seconds, 10m for 10 minutes, 10h for 10 hours. "
+             "Program will close after this amount of time. ")
 
     args = parser.parse_args()
     mode = args.mode
@@ -131,7 +132,7 @@ def define_custom_seconds():
         print(get_now_timestamp(), 'Running every', str(move_mouse_every_seconds), 'seconds')
 
     if TIMEOUT:
-        print(get_now_timestamp(), "Timeout is set for " + TIMEOUT_MESSAGE + ". Program will close after this time interval.")
+        print(get_now_timestamp(), "Timeout is set for " + TIMEOUT_MESSAGE + ".")
 
     print('--------')
 
