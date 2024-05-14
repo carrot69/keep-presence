@@ -8,6 +8,18 @@ It does nothing if you are using your computer, making it useful for **tricking 
 
 [![Demo](https://raw.githubusercontent.com/carrot69/keep-presence/master/demo/demo.gif)](https://github.com/carrot69/keep-presence)
 
+## Table of Contents
+
+- [Install from Pypi](#install-from-pypi)
+- [Install with Snap](#install-with-snap)
+- [Manual installation](#manual-installation)
+- [Optional arguments](#optional-arguments)
+- [FAQ](#faq)
+    - [Does it work on Wayland?](#does-it-work-on-wayland)
+    - [How can I stop the program after a certain amount of time?](#how-can-i-stop-the-program-after-a-certain-amount-of-time)
+    - [Launch Keep-Presence on Startup](#launch-keep-presence-on-startup)
+- [Supporting the project](#supporting-the-project)
+
 # Install from Pypi
 
 ```
@@ -83,7 +95,36 @@ python3 src/keep-presence.py
 
 ```
 
-# Donations:
+## FAQ: 
+
+### Does it work on Wayland?
+
+No, currently the program doesn't support Wayland due to limitations in the underlying library (pynput). We're actively looking for solutions and will update this FAQ if/when Wayland support is available. You can track progress on the GitHub issue: [GitHub issue](https://github.com/carrot69/keep-presence/issues/2)
+
+### How can I stop the program after a certain amount of time?
+
+Linux offers the timeout command, which allows you to set a maximum runtime for any command.
+
+Example:
+
+```
+timeout 30s keep-presence
+```
+
+### Launch Keep-Presence on Startup:
+
+1. GNOME: Open "Startup Applications Preferences" (search for it in Activities).
+2. KDE Plasma: Search for "Startup Applications" in the Kickoff menu.
+3. Click "Add" to create a new entry.
+4. In the "Command" field, enter the command to run keep-presence with your desired options. Here's just an example:
+5. `keep-presence --circular --seconds 180 --pixels 1`
+6. Change the command to fit your needs.
+
+**Using Systemd:**
+
+Alternatively, you can use Systemd to manage Keep-Presence as a startup service. Refer to the official Systemd documentation for detailed instructions on how to set this up.
+
+# Supporting the project:
 
 If you've found Keep Presence to be helpful, you can buy me a coffee, thanks!
 
